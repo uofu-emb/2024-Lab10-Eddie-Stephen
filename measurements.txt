@@ -1,0 +1,9 @@
+sleep_ms
+vsupply: 4.992 v
+csupply: 21.9 mA
+vtack_delay
+csuply: 21.6 mA
+vsupplky: 4.99 v
+tight loop
+vsupply: 4.99
+csupply: 22 mA 
