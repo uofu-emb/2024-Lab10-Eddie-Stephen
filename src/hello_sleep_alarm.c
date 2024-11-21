@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include "pico/stdlib.h"
-#include "/home/stephen/Desktop/5785/2024-Lab10-Eddie-Stephen/lib/pico-extras/src/rp2_common/pico_sleep/include/pico/sleep.h"
+#include "pico/sleep.h"
 
 static bool awake;
 
