@@ -16,6 +16,7 @@
 
 bool on = false;
 #define OUT_PIN 1
+#define IN_PIN 0
 
 
 #define MAIN_TASK_PRIORITY      ( tskIDLE_PRIORITY + 1UL )
@@ -44,6 +45,18 @@ void blink_task(__unused void *params) {
 }
 
 
+void irq_callback(uint gpio, uint32_t event_mask)
+{
+
+    if (gpio != IN_PIN) return;
+    if (event_mask & GPIO_IRQ_EDGE_RISE) {
+        gpio_put(OUT_PIN, on);
+        on = !on;
+    }
+    
+}
+
+
 
 int main( void )
 {
@@ -52,9 +65,11 @@ int main( void )
     gpio_set_dir(OUT_PIN, GPIO_OUT);
     const char *rtos_name;
     rtos_name = "FreeRTOS";
-    TaskHandle_t task;
-    xTaskCreate(blink_task, "BlinkThread",
-                 BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY, NULL);
-    vTaskStartScheduler();
+    // TaskHandle_t task;
+    // xTaskCreate(blink_task, "BlinkThread",
+    //              BLINK_TASK_STACK_SIZE, NULL, BLINK_TASK_PRIORITY, NULL);
+    // vTaskStartScheduler();
+    gpio_set_irq_enabled_with_callback(IN_PIN, GPIO_IRQ_EDGE_RISE | GPIO_IRQ_EDGE_FALL , true, irq_callback);
+    while(1) __wfi();
     return 0;
 }
