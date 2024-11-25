@@ -30,3 +30,11 @@
 #### 10 kHz.
 * vsupply: 4.99
 * csupply: 25.78 mA
+
+#### Sleep Mode.
+* vsupply: 4.99
+* csupply: 11.8 mA when awake & 3.7 mA when sleeping 
+
+#### Dormant Mode.
+* vsupply: 4.99
+* csupply: 11.8 mA when awake & 2.88 mA when sleeping 
